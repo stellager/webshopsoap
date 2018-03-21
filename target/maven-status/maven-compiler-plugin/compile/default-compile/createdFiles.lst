@@ -1,0 +1,9 @@
+nl\hu\iac\soap\wsinterface\PaymentFault.class
+nl\hu\iac\soap\wsinterface\PaymentResponse.class
+nl\hu\iac\soap\wsinterface\PaymentService.class
+nl\hu\iac\soap\wsinterface\package-info.class
+nl\hu\iac\soap\wsinterface\PaymentRequest.class
+nl\hu\iac\soap\wsinterface\ObjectFactory.class
+nl\hu\iac\soap\impl\PaymentSim.class
+nl\hu\iac\soap\wsinterface\PaymentServiceInterface.class
+nl\hu\iac\soap\wsinterface\PaymentFault_Exception.class

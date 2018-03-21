@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+    name="SoapWorkshop"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:req="http://nl.hu.iac/berichten/request"
+    xmlns:rsp="http://nl.hu.iac/berichten/response"
+    xmlns:flt="http://nl.hu.iac/berichten/fault"
+    xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+    xmlns="http://nl.hu.iac/berichten/"
+    targetNamespace="http://nl.hu.iac/berichten/">
+
+<wsdl:types>
+    <xsd:schema>
+        <xsd:import namespace="http://nl.hu.iac/berichten/request"
+                    schemaLocation="request.xsd"/>
+        <xsd:import namespace="http://nl.hu.iac/berichten/response"
+                    schemaLocation="response.xsd"/>
+        <xsd:import namespace="http://nl.hu.iac/berichten/fault"
+                    schemaLocation="fault.xsd"/>
+    </xsd:schema>
+</wsdl:types>
+    <wsdl:message name="paymentRequest">
+       <wsdl:part name="paymentRequest" element="req:paymentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="paymentResponse">
+        <wsdl:part name="paymentResponse" element="rsp:paymentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="paymentFault">
+        <wsdl:part name="paymentFault" element="flt:paymentFault"/>
+    </wsdl:message>
+   
+    
+    <wsdl:portType name="PaymentServiceInterface">
+        <wsdl:operation name="PaySim">
+            <wsdl:input message="paymentRequest"/>
+            <wsdl:output message="paymentResponse"/>
+            <wsdl:fault name="fault" message="paymentFault"/>
+        </wsdl:operation>
+       
+    </wsdl:portType>
+    
+    <wsdl:binding name="paymentServiceBinding" type="PaymentServiceInterface">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="PaySim">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+       
+    </wsdl:binding>
+    <wsdl:service name="PaymentService">
+        <wsdl:port name="WS-Port" binding="paymentServiceBinding">
+            <soap:address location="http://localhost:4711/soap-service/soap"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
